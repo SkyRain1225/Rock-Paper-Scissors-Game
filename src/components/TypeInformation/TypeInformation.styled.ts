@@ -1,18 +1,21 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface Container {
+  size?: boolean;
+}
+
+export const Container = styled.div<Container>`
   position: relative;
   display: flex;
-  width: 7rem;
-  height: 7rem;
+  width: ${props => (props.size ? '4rem' : '17rem')};
+  height: ${props => (props.size ? '4rem' : '17rem')};
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.theme.colors.main};
   border-radius: 50%;
 
   > img {
-    width: 6rem;
-    height: 6rem;
+    width: ${props => (props.size ? '4rem' : '13rem')};
+    height: ${props => (props.size ? '4rem' : '13rem')};
     position: absolute;
     left: 50%;
     top: 50%;
@@ -20,30 +23,24 @@ export const Container = styled.div`
     opacity: 0;
   }
   &.rock {
+    background-color: ${props => props.theme.colors.red};
     .Rock {
       opacity: 1;
     }
   }
   &.paper {
+    background-color: ${props => props.theme.colors.blue};
+
     .Paper {
       opacity: 1;
+      width: ${props => (props.size ? '3.3rem' : '13rem')};
+      height: ${props => (props.size ? '3.3rem' : '13rem')};
     }
   }
   &.scissors {
+    background-color: ${props => props.theme.colors.yellow};
     .Scissors {
       opacity: 1;
     }
-  }
-
-  > .Rock {
-    margin-bottom: 1rem;
-  }
-  > .Scissors {
-    margin-bottom: 0.5rem;
-  }
-  > .Paper {
-    width: 5rem;
-    height: 5rem;
-    margin-top: 0.2rem;
   }
 `;

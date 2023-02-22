@@ -5,9 +5,9 @@ import { ThreeTypes } from '~/types/types';
 
 import * as S from './TypeInformation.styled';
 
-const TYPE = ['paper', 'rock', 'scissors'] as const;
+const TYPE = ['rock', 'paper', 'scissors'] as const;
 
-const TypeInformation = ({ type }: { type?: ThreeTypes }) => {
+const TypeInformation = ({ type, size }: { type?: ThreeTypes; size?: boolean }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const TypeInformation = ({ type }: { type?: ThreeTypes }) => {
   // };
 
   return (
-    <S.Container className={type || TYPE[count]}>
+    <S.Container size={size} className={type || TYPE[count]}>
       <img src={Paper} alt="paper-image" className="Paper" />
       <img src={Rock} alt="rock-image" className="Rock" />
       <img src={Scissors} alt="scissors-image" className="Scissors" />

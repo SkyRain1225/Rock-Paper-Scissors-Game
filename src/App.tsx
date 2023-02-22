@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 
-import Main from '~/pages/Main';
+import { Main } from '~/pages';
 import { GlobalStyled } from '~/styles/GlobalStyled';
 import { theme } from '~/styles/themes';
 
