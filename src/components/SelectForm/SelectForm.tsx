@@ -1,5 +1,6 @@
 import { useRecoilState } from 'recoil';
 
+import { RandomSelect } from '~/assets';
 import { TypeInfomation } from '~/components';
 import { SelectTypeState } from '~/stores/SelectTypeState';
 import { ThreeTypes } from '~/types';
@@ -11,6 +12,7 @@ const SelectForm = () => {
 
   const handleSelect = (type: ThreeTypes) => {
     setType(type);
+    RandomSelect();
   };
 
   return (

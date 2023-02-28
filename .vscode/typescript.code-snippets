@@ -3,10 +3,5 @@
     "prefix": ["pro"],
     "body": ["${props => props${0}}"],
     "description": "Styled Components Props"
-  },
-  "Console log": {
-    "prefix": ["cl"],
-    "body": ["console.log(${0});"],
-    "description": "Console log"
   }
 }
