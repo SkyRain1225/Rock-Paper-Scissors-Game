@@ -9,5 +9,9 @@ export const GlobalStyled = createGlobalStyle`
   
   body {
     background-color: ${props => props.theme.colors.background};
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
   }
 `;

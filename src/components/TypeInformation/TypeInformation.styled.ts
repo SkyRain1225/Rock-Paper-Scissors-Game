@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 
 interface Container {
-  size?: boolean;
+  smallSize?: boolean;
 }
 
 export const Container = styled.div<Container>`
   position: relative;
   display: flex;
-  width: ${props => (props.size ? '4rem' : '17rem')};
-  height: ${props => (props.size ? '4rem' : '17rem')};
+  width: ${props => (props.smallSize ? '4rem' : '17rem')};
+  height: ${props => (props.smallSize ? '4rem' : '17rem')};
   justify-content: center;
   align-items: center;
   border-radius: 50%;
 
   > img {
-    width: ${props => (props.size ? '4rem' : '13rem')};
-    height: ${props => (props.size ? '4rem' : '13rem')};
+    width: ${props => (props.smallSize ? '4rem' : '13rem')};
+    height: ${props => (props.smallSize ? '4rem' : '13rem')};
     position: absolute;
     left: 50%;
     top: 50%;
@@ -33,8 +33,8 @@ export const Container = styled.div<Container>`
 
     .Paper {
       opacity: 1;
-      width: ${props => (props.size ? '3.3rem' : '13rem')};
-      height: ${props => (props.size ? '3.3rem' : '13rem')};
+      width: ${props => (props.smallSize ? '3.3rem' : '13rem')};
+      height: ${props => (props.smallSize ? '3.3rem' : '13rem')};
     }
   }
   &.scissors {
