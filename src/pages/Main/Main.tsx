@@ -1,24 +1,25 @@
 import { useRecoilValue } from 'recoil';
 
 import { SelectForm, TypeInfomation } from '~/components';
-import { SelectTypeState } from '~/stores/SelectTypeState';
+import { ComputerTypeState, PlayerTypeState } from '~/stores/SelectTypeState';
 
 import * as S from './Main.styled';
 
 const Main = () => {
-  const type = useRecoilValue(SelectTypeState);
+  const playerType = useRecoilValue(PlayerTypeState);
+  const computerType = useRecoilValue(ComputerTypeState);
 
   return (
     <S.Container>
       <S.Form>
         <p>Player</p>
-        {type ? <TypeInfomation type={type} /> : <TypeInfomation />}
+        {playerType ? <TypeInfomation type={playerType} /> : <TypeInfomation />}
         <SelectForm />
       </S.Form>
 
       <S.Form>
         <p>Computer</p>
-        <TypeInfomation />
+        {computerType ? <TypeInfomation type={computerType} /> : <TypeInfomation />}
       </S.Form>
     </S.Container>
   );

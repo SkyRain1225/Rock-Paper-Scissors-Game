@@ -2,17 +2,18 @@ import { useRecoilState } from 'recoil';
 
 import { RandomSelect } from '~/assets';
 import { TypeInfomation } from '~/components';
-import { SelectTypeState } from '~/stores/SelectTypeState';
+import { ComputerTypeState, PlayerTypeState } from '~/stores/SelectTypeState';
 import { ThreeTypes } from '~/types';
 
 import * as S from './SelectForm.styled';
 
 const SelectForm = () => {
-  const [type, setType] = useRecoilState(SelectTypeState);
+  const [playerType, setPlayerType] = useRecoilState(PlayerTypeState);
+  const [computerType, setComputerType] = useRecoilState(ComputerTypeState);
 
   const handleSelect = (type: ThreeTypes) => {
-    setType(type);
-    RandomSelect();
+    setPlayerType(type);
+    setComputerType(RandomSelect());
   };
 
   return (

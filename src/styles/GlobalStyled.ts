@@ -14,4 +14,8 @@ export const GlobalStyled = createGlobalStyle`
     -ms-user-select:none;
     user-select:none
   }
+
+  img {
+    -webkit-user-drag: none;
+  }
 `;

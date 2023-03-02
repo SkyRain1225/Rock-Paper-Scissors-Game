@@ -1,21 +1,13 @@
 import { useEffect, useState } from 'react';
 
 import { Paper, Rock, Scissors } from '~/assets';
-import { ThreeTypes } from '~/types';
+import { Props } from '~/types';
 
 import * as S from './TypeInformation.styled';
 
 const TYPE = ['rock', 'paper', 'scissors'] as const;
 
-const TypeInformation = ({
-  type,
-  smallSize,
-  onClick,
-}: {
-  type?: ThreeTypes;
-  smallSize?: boolean;
-  onClick?: void;
-}) => {
+const TypeInformation = ({ type, smallSize }: Props) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {

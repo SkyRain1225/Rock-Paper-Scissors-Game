@@ -17,6 +17,6 @@ export const Form = styled.div`
   > p {
     font-size: 1.5rem;
     font-weight: 800;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 `;
