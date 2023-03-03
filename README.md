@@ -7,7 +7,7 @@ A template for using react quickly.
 - Bundle tool: [`vite`](https://vitejs.dev/)
 - Frontend framework: `react` + `typescript`
 - Code style: `eslint` + `prettier` + [`@trivago/prettier-plugin-sort-imports`](https://github.com/trivago/prettier-plugin-sort-imports)
-- File system based router: [`react-router-dom v6`](https://reactrouter.com/docs/en/v6) + custom (src/components/FileSystemRoutes)
+- Router: [`react-router-dom v6`](https://reactrouter.com/docs/en/v6)
 - CSS: [`styled-components`](https://styled-components.com/)
 - State management library: [`recoil`](https://recoiljs.org/)
 - Date: [`dayjs`](https://day.js.org/)
