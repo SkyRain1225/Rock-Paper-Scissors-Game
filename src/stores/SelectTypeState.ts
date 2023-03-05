@@ -16,3 +16,8 @@ export const BeforeResultState = atom<ResultType | undefined>({
   key: 'BeforeResultState',
   default: undefined,
 });
+
+export const ScoreState = atom<number>({
+  key: 'ScoreState',
+  default: 0,
+});

@@ -1,8 +1,15 @@
+import { useEffect } from 'react';
+
 import { useRecoilState } from 'recoil';
 
 import { RandomSelect, ResultReader } from '~/assets';
 import { TypeInfomation } from '~/components';
-import { BeforeResultState, ComputerTypeState, PlayerTypeState } from '~/stores/SelectTypeState';
+import {
+  BeforeResultState,
+  ComputerTypeState,
+  PlayerTypeState,
+  ScoreState,
+} from '~/stores/SelectTypeState';
 import { ThreeTypes } from '~/types';
 
 import * as S from './SelectForm.styled';
@@ -10,17 +17,34 @@ import * as S from './SelectForm.styled';
 const SelectForm = () => {
   const [playerType, setPlayerType] = useRecoilState(PlayerTypeState);
   const [computerType, setComputerType] = useRecoilState(ComputerTypeState);
-  const [beforeResult, setBeforeState] = useRecoilState(BeforeResultState);
+  const [beforeResult, setBeforeResult] = useRecoilState(BeforeResultState);
+  const [score, setScore] = useRecoilState(ScoreState);
 
   const handleSelect = async (type: ThreeTypes) => {
     setPlayerType(type);
     setComputerType(RandomSelect());
-
-    if (playerType && computerType) {
-      const result = await ResultReader(playerType, computerType);
-      setBeforeState(result);
-    }
   };
+
+  useEffect(() => {
+    if (playerType && computerType) {
+      const getResult = async () => {
+        const result = await ResultReader(playerType, computerType);
+        setBeforeResult(result);
+
+        if (beforeResult === 'win' && result === 'win') {
+          setBeforeResult('win');
+          setScore(prev => prev + 1);
+        } else if (beforeResult === 'win' && result === 'lose') {
+          setBeforeResult('lose');
+          setScore(0);
+        } else if (beforeResult === 'lose' && result === 'win') {
+          setBeforeResult('win');
+          setScore(1);
+        }
+      };
+      getResult();
+    }
+  }, [computerType]);
 
   return (
     <S.Container>
