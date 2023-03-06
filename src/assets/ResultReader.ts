@@ -1,16 +1,26 @@
-import { ThreeTypes } from '~/types';
+import { ResultType, ThreeTypes } from '~/types';
+
+const resultsTable: { [key in ThreeTypes]: { [key in ThreeTypes]: ResultType } } = {
+  rock: {
+    rock: 'draw',
+    paper: 'lose',
+    scissors: 'win',
+  },
+  paper: {
+    rock: 'win',
+    paper: 'draw',
+    scissors: 'lose',
+  },
+  scissors: {
+    rock: 'lose',
+    paper: 'win',
+    scissors: 'draw',
+  },
+};
 
 export const ResultReader = (player: ThreeTypes, computer: ThreeTypes) => {
-  switch (player) {
-    case computer:
-      return 'draw';
-    case 'rock':
-      return computer === 'paper' ? 'lose' : 'win';
-    case 'paper':
-      return computer === 'scissors' ? 'lose' : 'win';
-    case 'scissors':
-      return computer === 'rock' ? 'lose' : 'win';
-    default:
-      throw new Error('Invalid type');
+  if (!resultsTable[player] || !resultsTable[player][computer]) {
+    throw new Error('Invalid input');
   }
+  return resultsTable[player][computer];
 };
