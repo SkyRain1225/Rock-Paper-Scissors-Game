@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { useRecoilState } from 'recoil';
 
 import { RandomSelect, ResultReader } from '~/assets';
@@ -23,28 +21,16 @@ const SelectForm = () => {
   const handleSelect = async (type: ThreeTypes) => {
     setPlayerType(type);
     setComputerType(RandomSelect());
-  };
 
-  useEffect(() => {
-    if (playerType && computerType) {
-      const getResult = async () => {
-        const result = await ResultReader(playerType, computerType);
-        setBeforeResult(result);
-
-        if (beforeResult === 'win' && result === 'win') {
-          setBeforeResult('win');
-          setScore(prev => prev + 1);
-        } else if (beforeResult === 'win' && result === 'lose') {
-          setBeforeResult('lose');
-          setScore(0);
-        } else if (beforeResult === 'lose' && result === 'win') {
-          setBeforeResult('win');
-          setScore(1);
-        }
-      };
-      getResult();
+    const result = ResultReader(type, computerType!);
+    if (result === 'win') {
+      setScore(score + 1);
+    } else if (result === 'lose') {
+      setScore(0);
+    } else {
+      setScore(score);
     }
-  }, [computerType]);
+  };
 
   return (
     <S.Container>
