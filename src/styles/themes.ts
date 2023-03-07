@@ -7,6 +7,8 @@ export const colors = {
   yellow: '#eec86b',
   white: '#fff',
   orange: '#f7a35c',
+  grey: '#848484',
+  darkgrey: '#353535',
 };
 
 export const theme = {

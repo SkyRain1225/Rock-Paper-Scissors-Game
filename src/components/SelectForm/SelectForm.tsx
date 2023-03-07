@@ -1,13 +1,11 @@
+import { useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+
 import { useRecoilState } from 'recoil';
 
 import { RandomSelect, ResultReader } from '~/assets';
 import { TypeInfomation } from '~/components';
-import {
-  BeforeResultState,
-  ComputerTypeState,
-  PlayerTypeState,
-  ScoreState,
-} from '~/stores/SelectTypeState';
+import { ComputerTypeState, PlayerTypeState, ScoreState } from '~/stores/SelectTypeState';
 import { ThreeTypes } from '~/types';
 
 import * as S from './SelectForm.styled';
@@ -15,22 +13,27 @@ import * as S from './SelectForm.styled';
 const SelectForm = () => {
   const [playerType, setPlayerType] = useRecoilState(PlayerTypeState);
   const [computerType, setComputerType] = useRecoilState(ComputerTypeState);
-  const [beforeResult, setBeforeResult] = useRecoilState(BeforeResultState);
   const [score, setScore] = useRecoilState(ScoreState);
+
+  // const navigate = useNavigate();
 
   const handleSelect = async (type: ThreeTypes) => {
     setPlayerType(type);
     setComputerType(RandomSelect());
-
-    const result = ResultReader(type, computerType!);
-    if (result === 'win') {
-      setScore(score + 1);
-    } else if (result === 'lose') {
-      setScore(0);
-    } else {
-      setScore(score);
-    }
   };
+
+  useEffect(() => {
+    const updateScore = async () => {
+      if (playerType && computerType) {
+        const result = await ResultReader(playerType, computerType);
+
+        result === 'win' && setScore(score + 1);
+        result === 'lose' && setScore(0);
+      }
+    };
+
+    updateScore();
+  }, [playerType, computerType]);
 
   return (
     <S.Container>
