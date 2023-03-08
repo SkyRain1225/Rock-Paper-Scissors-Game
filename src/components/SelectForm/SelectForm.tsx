@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
 
 import { useRecoilState } from 'recoil';
 
@@ -14,8 +13,6 @@ const SelectForm = () => {
   const [playerType, setPlayerType] = useRecoilState(PlayerTypeState);
   const [computerType, setComputerType] = useRecoilState(ComputerTypeState);
   const [score, setScore] = useRecoilState(ScoreState);
-
-  // const navigate = useNavigate();
 
   const handleSelect = async (type: ThreeTypes) => {
     setPlayerType(type);
